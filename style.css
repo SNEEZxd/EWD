@@ -56,7 +56,20 @@ section{
   overflow-y: scroll;
   overflow-x: hidden;
   height: 550px;
-  width: 80%;
+  width: 100%;
   display: flex;
   justify-content: center;
 }
+#Chart1{
+  width: 400px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+}
+#Chart2{
+  width: 400px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+}
+
