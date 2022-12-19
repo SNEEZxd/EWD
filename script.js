@@ -1,18 +1,12 @@
 const Url = "https://my.api.mockaroo.com/EDI.json";
+// set up the table
 const table = document.createElement("table");
-table.cellPadding = 0;
-table.cellSpacing = 0;
-table.border = 0;
 const thead = document.createElement("thead");
 thead.classList.add("tbl-header");
-thead.cellPadding = 0;
-thead.cellSpacing = 0;
-thead.border = 0;
+
 const headRow = document.createElement("tr");
 headRow.classList.add("tbl-header-row");
-headRow.cellPadding = 0;
-headRow.cellSpacing = 0;
-headRow.border = 0;
+// create table headers
 const th1 = document.createElement("th");
 th1.textContent = "ID";
 const th2 = document.createElement("th");
@@ -23,6 +17,7 @@ const th4 = document.createElement("th");
 th4.textContent = "Price";
 const th5 = document.createElement("th");
 th5.textContent = "In Stock";
+// append table headers to the row
 headRow.appendChild(th1);
 headRow.appendChild(th2);
 headRow.appendChild(th3);
@@ -32,12 +27,14 @@ thead.appendChild(headRow);
 table.appendChild(thead);
 
 const tbody = document.createElement("tbody");
+// Set API key and content type
 const options = {
   headers: {
     "X-API-Key": "aac96970",
     "Content-Type": "application/json",
   },
 };
+// Fetch data from API
 fetch(Url, options)
   .then((response) => response.json())
   .then((data) => {
@@ -60,30 +57,25 @@ fetch(Url, options)
       row.appendChild(td5);
       tbody.appendChild(row);
     });
+    // append table body to the table
     table.appendChild(tbody);
+    // append table to the container
     document.getElementById("table-container").appendChild(table);
-    var filteredData = data.filter(function (item) {
-      return (
-        item.expiration_date.indexOf("2022") > -1 ||
-        item.expiration_date.indexOf("2023") > -1
-      );
-    });
-    var ctx = document.getElementById("Chart2").getContext("2d");
+    //create charts
+    var ctx = document.getElementById("Chart1").getContext("2d");
     var myChart = new Chart(ctx, {
       type: "bar",
       data: {
-        labels: ["2022", "2023"],
+        labels: data.map(function (item) {
+          return item.product_name;
+        }),
         datasets: [
           {
-            label: "Number of products with expiration dates in 2022 or 2023",
-            data: [
-              filteredData.filter(function (item) {
-                return item.expiration_date.indexOf("2022") > -1;
-              }).length,
-              filteredData.filter(function (item) {
-                return item.expiration_date.indexOf("2023") > -1;
-              }).length,
-            ],
+            label: "Products in stock",
+            data: data.map(function (item) {
+              return item.in_stock;
+            }),
+            borderWidth: 1,
           },
         ],
       },
@@ -99,20 +91,32 @@ fetch(Url, options)
         },
       },
     });
-    var ctx = document.getElementById("Chart1").getContext("2d");
+
+    // filter data for chart 2
+    var filteredData = data.filter(function (item) {
+      return (
+        item.expiration_date.indexOf("2022") > -1 ||
+        item.expiration_date.indexOf("2023") > -1
+      );
+    });
+    //get context element for chart 2
+    var ctx = document.getElementById("Chart2").getContext("2d");
+    // create chart 2
     var myChart = new Chart(ctx, {
       type: "bar",
       data: {
-        labels: data.map(function (item) {
-          return item.product_name;
-        }),
+        labels: ["2022", "2023"],
         datasets: [
           {
-            label: "Products in stock",
-            data: data.map(function (item) {
-              return item.in_stock;
-            }),
-            borderWidth: 1,
+            label: "Number of products with expiration dates in 2022 or 2023",
+            data: [
+              filteredData.filter(function (item) {
+                return item.expiration_date.indexOf("2022") > -1;
+              }).length,
+              filteredData.filter(function (item) {
+                return item.expiration_date.indexOf("2023") > -1;
+              }).length,
+            ],
           },
         ],
       },
