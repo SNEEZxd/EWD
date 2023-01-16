@@ -53,8 +53,8 @@ h1{
   color: rgb(24, 24, 24);
   text-transform: uppercase;
   font-weight: 200;
-  text-align: center;
-  padding: 40px 0px;
+  text-align: center; /*wyśrodkowanie tekstu.*/
+  padding: 40px 0px; /*Wypełnienie tworzy dodatkową przestrzeń w elemencie umiejscowioną między jego zawartością a krawędzią obramowania*/
 }
 table{
   width:100%;
