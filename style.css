@@ -91,6 +91,7 @@ td{
 section{
   margin: 50px;
 }
+
 #table-container{
   overflow-y: scroll;
   overflow-x: hidden;
@@ -99,8 +100,8 @@ section{
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 120px;
-  border-bottom: 1px rgba(90, 90, 90, 0.334) solid;   /*ZOSTAWIĆ CZY NIE */
-  border-left: 1px rgba(90, 90, 90, 0.334) solid;       /*ZOSTAWIĆ CZY NIE */
+  border-bottom: 1px rgba(90, 90, 90, 0.334) solid;   
+  border-left: 1px rgba(90, 90, 90, 0.334) solid;     
 }
 #Chart1{
   width: 90% !important;
