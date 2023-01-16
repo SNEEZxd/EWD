@@ -1,5 +1,5 @@
 var apiKey = prompt("Please enter your API key:");
-const Url = "https://my.api.mockaroo.com/EDI.json";
+const Url = "https://my.api.mockaroo.com/GREENGROCER.json";
 // set up the table
 const table = document.createElement("table");
 const thead = document.createElement("thead");
