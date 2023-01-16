@@ -1,3 +1,4 @@
+var apiKey = prompt("Please enter your API key:");
 const Url = "https://my.api.mockaroo.com/EDI.json";
 // set up the table
 const table = document.createElement("table");
@@ -30,7 +31,7 @@ const tbody = document.createElement("tbody");
 // Set API key and content type
 const options = {
   headers: {
-    "X-API-Key": "aac96970",
+    "X-API-Key": apiKey,
     "Content-Type": "application/json",
   },
 };
